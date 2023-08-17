@@ -23,7 +23,7 @@ public class DepControll {
     @GetMapping
     public Result dept(){
         List<Dept> list = depService.list();
-        System.out.println("hello");
+        System.out.println("pig man");
         return Result.success(list);
     }
     @Log
