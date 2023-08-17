@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdx.Mapper.EmpMapper">
+    <update id="update">
+        update emp
+        <set>
+            <if test="username!=null and username!=''">
+                username = #{username},
+            </if>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="gender!=null and name!=''">
+                gender = #{gender},
+            </if>
+            <if test="image!=null and image!=''">
+                image = #{image},
+            </if>
+            <if test="deptId!=null and deptId!=''">
+                dept_id = #{deptId},
+            </if>
+            <if test="entrydate!=null">
+                entrydate = #{entrydate},
+            </if>
+            <if test="job!=null and job!=''">
+                job = #{job},
+            </if>
+            update_time = #{updateTime}
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <delete id="delete">
+        delete from emp
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="select_" resultType="com.sdx.my_class.Emp">
+    select * from emp
+    <where>
+        <if test="name !=null and name!=''">
+            name like concat('%',#{name},'%')
+        </if>
+        <if test="gender!=null">
+            and gender = #{gender}
+        </if>
+        <if test="begin!=null and end!=null">
+            and entrydate between #{begin} and #{end}
+        </if>
+    </where>
+    </select>
+</mapper>
