@@ -24,7 +24,6 @@ public class DepControll {
     public Result dept(){
         List<Dept> list = depService.list();
         System.out.println("spider man");
-        System.out.println("iron man");
         return Result.success(list);
     }
     @Log
